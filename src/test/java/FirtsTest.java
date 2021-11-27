@@ -47,4 +47,13 @@ public class FirtsTest {
         driver.findElement(By.xpath("//*[@id=\"stgMain\"]/div/div/div[1]/form/button")).click();
         Assertions.assertEquals("Odebrane", driver.findElement(By.xpath("//*[@id=\"folder-1\"]/div[2]")).getText());
     }
+
+    @Test
+    public void openSourceTest(){
+        driver.get("https://opensource-demo.orangehrmlive.com/");
+        driver.findElement(By.name("txtUsername")).sendKeys("WrongUsername");
+        driver.findElement(By.name("txtPassword")).sendKeys("WrongPassword");
+        driver.findElement(By.name("Submit")).click();
+        Assertions.assertEquals("Invalid credentials", driver.findElement(By.id("spanMessage")).getText());
+    }
 }
