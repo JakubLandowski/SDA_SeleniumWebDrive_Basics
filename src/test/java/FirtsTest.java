@@ -4,7 +4,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FirtsTest {
     static WebDriver driver;
@@ -49,11 +53,28 @@ public class FirtsTest {
     }
 
     @Test
-    public void openSourceTest(){
+    public void openSourceloginTest(){
         driver.get("https://opensource-demo.orangehrmlive.com/");
         driver.findElement(By.name("txtUsername")).sendKeys("WrongUsername");
         driver.findElement(By.name("txtPassword")).sendKeys("WrongPassword");
         driver.findElement(By.name("Submit")).click();
         Assertions.assertEquals("Invalid credentials", driver.findElement(By.id("spanMessage")).getText());
     }
+
+    @Test
+    public void bbcTest1(){
+        driver.get("https://www.bbc.com/");
+        List<WebElement> links = new ArrayList<>();
+        links = driver.findElements(By.tagName("a"));
+        System.out.println(links.size());
+    }
+
+    @Test
+    public void bbcTest2(){
+        driver.get("https://www.bbc.com/");
+        System.out.println(driver.findElements(By.tagName("a")).size());        // links
+        System.out.println(driver.findElements(By.tagName("img")).size());      // images
+    }
+
+
 }
